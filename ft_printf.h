@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:10:34 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/01/20 21:40:56 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/01/21 19:44:06 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@
 
 typedef struct printf_s
 {
-	char	*str;
 	int		printed;
-
 	int		minus;
 	int		zero;
 	int		precision;
