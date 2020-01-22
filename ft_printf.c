@@ -6,23 +6,29 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:10:38 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/01/21 20:51:05 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/01/22 18:22:29 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		ft_conversions(va_list ap, char c){}
+void		ft_conversions(va_list ap, char c, t_flags *data)
+{
+	if (c == 'c')
+		ft_chars(ap, data);
+	else if (c == 's')
+		ft_strings(ap, data);
+}
 
-void		ft_parse_str(d_list *data, char *format, va_list ap, int *i)
+void		ft_parse_str(t_flags *data, const char *format, va_list ap, int *i)
 {
 	if (ft_strchr(CONVERSIONS, format[*i]))
 	{
-		ft_conversions(ap, format[*i]);
+		ft_conversions(ap, format[*i], data);
 	}
 }
 
-int			ft_manageformat(d_list *data, char *format, va_list ap)
+int			ft_manageformat(t_flags *data, const char *format, va_list ap)
 {
 	int i;
 
@@ -49,11 +55,11 @@ int			ft_manageformat(d_list *data, char *format, va_list ap)
 
 int			ft_printf(const char *format, ...)
 {
-	d_list	*data;
+	t_flags	*data;
 	va_list ap;
 
 	va_start(ap, format);
-	data = malloc(sizeof(d_list));
+	data = malloc(sizeof(t_flags));
 	data->printed = 0;
 	ft_manageformat(data, format, ap);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:10:34 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/01/21 19:44:06 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/01/22 18:18:32 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,19 @@
 # include <stdarg.h>
 # include "Libft/libft.h"
 
-typedef struct printf_s
+typedef struct	s_printf
 {
 	int		printed;
 	int		minus;
 	int		zero;
 	int		precision;
 	int		width;
-} 			d_list;
+}				t_flags;
 
-int			ft_printf(const char *, ...);
+int				ft_printf(const char *format, ...);
+void			ft_strings(va_list ap, t_flags *data);
+void			ft_chars(va_list ap, t_flags *data);
+int				ft_write_str(char *str);
+
 
 #endif
