@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:10:38 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/01/23 19:25:35 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/01/23 20:51:36 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,30 @@ void		ft_conversions(va_list ap, char c, t_flags *data)
 		ft_strings(ap, data);
 }
 
+void		ft_modifiers(va_list ap, char *f, int *i, t_flags *data)
+{
+	char c;
+
+	c = f[*i];
+	if (c == '-')
+		data->minus = 1;
+	else if (strchr("1234567890", c))
+		data->width = (int)(c - '0');
+	else if (c == '.')
+		data->precision = (int)(f[*i++]);
+}
+
 void		ft_parse_str(t_flags *data, const char *format, va_list ap, int *i)
 {
 	if (ft_strchr(CONVERSIONS, format[*i]))
 	{
 		ft_conversions(ap, format[*i], data);
-		*i += 1;
 	}
+	else
+	{
+		ft_modifiers(ap, format, &i, data);
+	}
+	*i += 1;
 }
 
 int			ft_manageformat(t_flags *data, const char *format, va_list ap)
