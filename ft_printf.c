@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:10:38 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/01/22 18:22:29 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/01/23 19:25:35 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void		ft_parse_str(t_flags *data, const char *format, va_list ap, int *i)
 	if (ft_strchr(CONVERSIONS, format[*i]))
 	{
 		ft_conversions(ap, format[*i], data);
+		*i += 1;
 	}
 }
 
@@ -59,8 +60,12 @@ int			ft_printf(const char *format, ...)
 	va_list ap;
 
 	va_start(ap, format);
-	data = malloc(sizeof(t_flags));
+	data = (t_flags *)malloc(sizeof(t_flags));
 	data->printed = 0;
+	data->minus = 0;
+	data->zero = 0;
+	data->precision = 0;
+	data->width = 0;
 	ft_manageformat(data, format, ap);
-	return (0);
+	return (data->printed);
 }

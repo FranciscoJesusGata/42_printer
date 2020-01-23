@@ -6,7 +6,7 @@
 #    By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/22 13:40:25 by fgata-va          #+#    #+#              #
-#    Updated: 2020/01/22 18:11:22 by fgata-va         ###   ########.fr        #
+#    Updated: 2020/01/23 17:30:54 by fgata-va         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,6 @@ NAME = libftprintf.a
 
 lib:
 		$(MAKE) -C Libft all
-ww
 $(NAME): lib
 		@$(CC) $(CFLAGS) -c $(SRC)
 		@ar rc $(NAME) $(OBJ) $(LIBOBJS)

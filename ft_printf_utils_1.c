@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 14:17:05 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/01/22 18:09:38 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/01/23 19:17:05 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int		ft_write_str(char *str)
 {
-	int	written;
+	int i;
 
-	written = 0;
-	while (str)
+	i = 0;
+	while (str[i])
 	{
-		written += write(1, str, 1);
-		str++;
+		write(1, &str[i], 1);
+		i++;
 	}
-	return (written);
+	return (i);
 }
