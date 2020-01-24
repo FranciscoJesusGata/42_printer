@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:10:38 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/01/23 20:51:36 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/01/24 18:02:03 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,17 @@ void		ft_conversions(va_list ap, char c, t_flags *data)
 		ft_strings(ap, data);
 }
 
-void		ft_modifiers(va_list ap, char *f, int *i, t_flags *data)
+void		ft_modifiers(char *f, int *i, t_flags *data)
 {
 	char c;
 
 	c = f[*i];
 	if (c == '-')
 		data->minus = 1;
-	else if (strchr("1234567890", c))
+	else if (ft_strchr("1234567890", c))
 		data->width = (int)(c - '0');
 	else if (c == '.')
-		data->precision = (int)(f[*i++]);
+		data->precision = (f[(*i += 1)]) - '0';
 }
 
 void		ft_parse_str(t_flags *data, const char *format, va_list ap, int *i)
@@ -41,7 +41,7 @@ void		ft_parse_str(t_flags *data, const char *format, va_list ap, int *i)
 	}
 	else
 	{
-		ft_modifiers(ap, format, &i, data);
+		ft_modifiers(format, i, data);
 	}
 	*i += 1;
 }
@@ -81,7 +81,7 @@ int			ft_printf(const char *format, ...)
 	data->printed = 0;
 	data->minus = 0;
 	data->zero = 0;
-	data->precision = 0;
+	data->precision = NULL;
 	data->width = 0;
 	ft_manageformat(data, format, ap);
 	return (data->printed);

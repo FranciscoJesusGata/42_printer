@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:10:34 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/01/23 19:16:15 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/01/24 18:04:08 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ typedef struct	s_printf
 int				ft_printf(const char *format, ...);
 void			ft_strings(va_list ap, t_flags *data);
 void			ft_chars(va_list ap, t_flags *data);
-int				ft_write_str(char *str);
+int				ft_write_str(char *str, t_list *data);
 
 #endif
