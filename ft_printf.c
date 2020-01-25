@@ -6,11 +6,21 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:10:38 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/01/24 18:02:03 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/01/25 14:25:14 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdlib.h>
+
+void		ft_reset_data(t_flags *data)
+{
+	data->minus = 0;
+	data->zero = 0;
+	data->precision = 0;
+	data->precision_l = 0;
+	data->width = 0;
+}
 
 void		ft_conversions(va_list ap, char c, t_flags *data)
 {
@@ -20,7 +30,7 @@ void		ft_conversions(va_list ap, char c, t_flags *data)
 		ft_strings(ap, data);
 }
 
-void		ft_modifiers(char *f, int *i, t_flags *data)
+void		ft_modifiers(const char *f, int *i, t_flags *data)
 {
 	char c;
 
@@ -30,7 +40,12 @@ void		ft_modifiers(char *f, int *i, t_flags *data)
 	else if (ft_strchr("1234567890", c))
 		data->width = (int)(c - '0');
 	else if (c == '.')
-		data->precision = (f[(*i += 1)]) - '0';
+	{
+		data->precision = 1;
+		data->precision_l = (f[(*i += 1)]) - '0';
+	}
+	else if (c == '0')
+		data->zero = (f[(*i += 1)]) - '0';
 }
 
 void		ft_parse_str(t_flags *data, const char *format, va_list ap, int *i)
@@ -38,12 +53,13 @@ void		ft_parse_str(t_flags *data, const char *format, va_list ap, int *i)
 	if (ft_strchr(CONVERSIONS, format[*i]))
 	{
 		ft_conversions(ap, format[*i], data);
+		ft_reset_data(data);
+		*i += 1;
 	}
 	else
 	{
 		ft_modifiers(format, i, data);
 	}
-	*i += 1;
 }
 
 int			ft_manageformat(t_flags *data, const char *format, va_list ap)
@@ -75,14 +91,13 @@ int			ft_printf(const char *format, ...)
 {
 	t_flags	*data;
 	va_list ap;
+	int		printed;
 
 	va_start(ap, format);
-	data = (t_flags *)malloc(sizeof(t_flags));
+	data = malloc(sizeof(t_flags));
 	data->printed = 0;
-	data->minus = 0;
-	data->zero = 0;
-	data->precision = NULL;
-	data->width = 0;
 	ft_manageformat(data, format, ap);
-	return (data->printed);
+	printed = data->printed;
+	free(data);
+	return (printed);
 }
