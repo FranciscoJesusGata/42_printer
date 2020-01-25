@@ -6,7 +6,7 @@
 #    By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/22 13:40:25 by fgata-va          #+#    #+#              #
-#    Updated: 2020/01/23 17:30:54 by fgata-va         ###   ########.fr        #
+#    Updated: 2020/01/25 17:29:53 by fgata-va         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CC = gcc
 
 CFLAGS += -Wall -Werror -Wextra
 
-LIBOBJS = Libft/*.o
+LIBOBJS = SOURCES := $(shell find $(SOURCEDIR) -name '*.o')
 
 SRC = *.c
 
@@ -30,14 +30,15 @@ $(NAME): lib
 
 clean: 
 		@rm -f $(OBJ)
-		@rm -f $(BONUSOBJS)
+		@$(MAKE) -C Libft clean
 
-test: lib
-	gcc -LLibft/ -lft -I. main.c ft_printf.c ft_chars_strings.c ft_printf_utils_1.c -o test
+# Regla para compilar con programa con un main
+test:
+	$(CC) $(CFLAGS) -g -I./ $(SRC) Libft/*.c
 
 fclean: clean
 		@rm -f $(NAME)
-		@rm -f $(SONAME)
+		@$(MAKE) -C Libft fclean
 
 re: fclean all
 

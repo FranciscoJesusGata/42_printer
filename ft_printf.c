@@ -6,26 +6,17 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:10:38 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/01/25 14:25:14 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/01/25 18:15:40 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdlib.h>
 
-void		ft_reset_data(t_flags *data)
-{
-	data->minus = 0;
-	data->zero = 0;
-	data->precision = 0;
-	data->precision_l = 0;
-	data->width = 0;
-}
-
 void		ft_conversions(va_list ap, char c, t_flags *data)
 {
 	if (c == 'c')
-		ft_chars(ap, data);
+		ft_chrs(ap, data);
 	else if (c == 's')
 		ft_strings(ap, data);
 }
@@ -38,7 +29,7 @@ void		ft_modifiers(const char *f, int *i, t_flags *data)
 	if (c == '-')
 		data->minus = 1;
 	else if (ft_strchr("1234567890", c))
-		data->width = (int)(c - '0');
+		ft_getwidth(f, i ,data);
 	else if (c == '.')
 	{
 		data->precision = 1;
@@ -54,7 +45,6 @@ void		ft_parse_str(t_flags *data, const char *format, va_list ap, int *i)
 	{
 		ft_conversions(ap, format[*i], data);
 		ft_reset_data(data);
-		*i += 1;
 	}
 	else
 	{
@@ -78,7 +68,10 @@ int			ft_manageformat(t_flags *data, const char *format, va_list ap)
 				i++;
 				ft_parse_str(data, format, ap, &i);
 				if (ft_strchr(CONVERSIONS, format[i]))
+				{
+					i++;
 					break ;
+				}
 			}
 			continue;
 		}
