@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 13:35:47 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/01/25 18:31:32 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/01/25 19:00:19 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,24 @@ int	main(void)
 	native = printf("Width de 10: %10s.\n", "Curro");
 	printf("Mi función escribió %d y printf escribió %d \n", mine, native);
 	printf("====================TEST 7====================\n");
+	printf("Test con varios chars con width\n");
+	mine = ft_printf("Width de 10: %5c.\n", 'm');
+	native = printf("Width de 10: %5c.\n", 'm');
+	printf("Mi función escribió %d y printf escribió %d \n", mine, native);
+	printf("====================TEST 8====================\n");
+	printf("Test con varios chars con width justificado a la izquierda\n");
+	mine = ft_printf("Width de 10: %-10c.\n", 'm');
+	native = printf("Width de 10: %-10c.\n", 'm');
+	printf("Mi función escribió %d y printf escribió %d \n", mine, native);
+	printf("====================TEST 9====================\n");
 	printf("Test con varios strings con width justificado a la izquierda\n");
 	mine = ft_printf("Width de 10: %-10s.\n", "Curro");
 	native = printf("Width de 10: %-10s.\n", "Curro");
+	printf("Mi función escribió %d y printf escribió %d \n", mine, native);
+	printf("====================TEST 10====================\n");
+	printf("Test con strings con precisión sin especificar\n");
+	mine = ft_printf("Hola %.s. \n", "Mundo");
+	native = printf("Hola %.s. \n", "Mundo");
 	printf("Mi función escribió %d y printf escribió %d \n", mine, native);
 	return (0);
 }
