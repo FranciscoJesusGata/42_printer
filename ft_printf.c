@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:10:38 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/01/25 18:15:40 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/01/26 12:30:37 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void		ft_conversions(va_list ap, char c, t_flags *data)
 		ft_chrs(ap, data);
 	else if (c == 's')
 		ft_strings(ap, data);
+	else if (c == 'd' || c == 'i')
+		ft_prnt_int(ap, data);
 }
 
 void		ft_modifiers(const char *f, int *i, t_flags *data)
@@ -28,7 +30,7 @@ void		ft_modifiers(const char *f, int *i, t_flags *data)
 	c = f[*i];
 	if (c == '-')
 		data->minus = 1;
-	else if (ft_strchr("1234567890", c))
+	else if (ft_strchr("123456789", c))
 		ft_getwidth(f, i ,data);
 	else if (c == '.')
 	{

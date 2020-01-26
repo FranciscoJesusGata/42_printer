@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:10:34 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/01/25 18:21:19 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/01/26 12:11:48 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,7 @@ int				ft_write_str(char *str, t_flags *data);
 void			ft_reset_data(t_flags *data);
 void			ft_getwidth(const char *f, int *i, t_flags *data);
 void			ft_width(int width, int str_lenght, t_flags *data);
+void			ft_prnt_int(va_list ap, t_flags *data);
+void			ft_putnbr_modified(int n, t_flags *data);
 
 #endif
