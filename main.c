@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 13:35:47 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/02/04 19:31:08 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/02/04 20:54:40 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,11 @@ int	main(void)
 	printf("Test básico de números enteros con width y justificado a la izq con estrella.\n");
 	mine = ft_printf("Width de 10: |%-*d|\n", 10, 42);
 	native = printf("Width de 10: |%-*d|\n", 10, 42);
+	printf("Mi función escribió %d y printf escribió %d \n", mine, native);
+	printf("====================TEST 17====================\n");
+	printf("Test básico con porcentaje.\n");
+	mine = ft_printf("La cpu funciona al %d%%\n", 5);
+	native = printf("La cpu funciona al %d%%\n", 5);
 	printf("Mi función escribió %d y printf escribió %d \n", mine, native);
 	return (0);
 }

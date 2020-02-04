@@ -6,7 +6,7 @@
 #    By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/22 13:40:25 by fgata-va          #+#    #+#              #
-#    Updated: 2020/02/04 19:46:55 by fgata-va         ###   ########.fr        #
+#    Updated: 2020/02/04 20:24:43 by fgata-va         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,8 @@ lib:
 $(NAME): lib
 		@$(CC) $(CFLAGS) -c $(SRC)
 		@ar rc $(NAME) $(OBJ) $(LIBOBJS)
+
+all: $(NAME)
 
 clean: 
 		@rm -f $(OBJ)

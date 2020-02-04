@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 14:17:05 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/02/04 20:04:23 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/02/04 20:50:15 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,6 @@ void	ft_width(int width, int str_lenght, t_flags *data)
 	}
 }
 
-/*
-** Yeah I put star instead of asterisk
-**/
 int 	ft_control_star(const char *f, int *i, va_list ap)
 {
 	int num;

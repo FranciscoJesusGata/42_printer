@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:10:38 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/02/04 19:27:43 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/02/04 20:50:54 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void		ft_conversions(va_list ap, char c, t_flags *data)
 		ft_strings(ap, data);
 	else if (c == 'd' || c == 'i')
 		ft_prnt_int(ap, data);
+	else if (c == '%')
+		ft_percent(data);
 }
 
 void		ft_modifiers(const char *f, int *i, t_flags *data, va_list ap)

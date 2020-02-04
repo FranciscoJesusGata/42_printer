@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 13:12:55 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/01/25 18:58:27 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/02/04 20:57:16 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,10 @@ void	ft_chrs(va_list ap, t_flags *data)
 		ft_width(data->width, 1, data);
 	data->printed += write(1, &c, 1);
 	if(data->width > 0 && data->minus == 1)
-			ft_width(data->width, 1, data);
+		ft_width(data->width, 1, data);
+}
+
+void	ft_percent(t_flags *data)
+{
+	data->printed += write(1, "%" ,1);
 }
