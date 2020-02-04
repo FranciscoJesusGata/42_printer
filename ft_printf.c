@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:10:38 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/01/26 12:30:37 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/02/04 19:27:43 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,24 @@ void		ft_conversions(va_list ap, char c, t_flags *data)
 		ft_prnt_int(ap, data);
 }
 
-void		ft_modifiers(const char *f, int *i, t_flags *data)
+void		ft_modifiers(const char *f, int *i, t_flags *data, va_list ap)
 {
 	char c;
 
 	c = f[*i];
 	if (c == '-')
 		data->minus = 1;
-	else if (ft_strchr("123456789", c))
-		ft_getwidth(f, i ,data);
+	else if (ft_strchr("123456789*", c))
+		ft_getwidth(f, i ,data, ap);
 	else if (c == '.')
 	{
 		data->precision = 1;
-		data->precision_l = (f[(*i += 1)]) - '0';
+		data->precision_l = ft_control_star(f, i, ap);
 	}
 	else if (c == '0')
-		data->zero = (f[(*i += 1)]) - '0';
+		data->zero = ft_control_star(f, i, ap);
 }
+
 
 void		ft_parse_str(t_flags *data, const char *format, va_list ap, int *i)
 {
@@ -50,7 +51,7 @@ void		ft_parse_str(t_flags *data, const char *format, va_list ap, int *i)
 	}
 	else
 	{
-		ft_modifiers(format, i, data);
+		ft_modifiers(format, i, data, ap);
 	}
 }
 
