@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 13:35:47 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/01/27 15:36:51 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/02/05 12:55:33 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int	main(void)
 	printf("Mi función escribió %d y printf escribió %d \n", mine, native);
 	printf("====================TEST 5====================\n");
 	printf("Test con varios strings con diferente precisión\n");
-	mine = ft_printf("Hola %.3s, %.4s, %.0s. \n", "Curro", "Alberto", "Jaime");
-	native = printf("Hola %.3s, %.4s, %.0s. \n", "Curro", "Alberto", "Jaime");
+	mine = ft_printf("Hola %.10s, %.4s, %.0s. \n", "Curro", "Alberto", "Jaime");
+	native = printf("Hola %.10s, %.4s, %.0s. \n", "Curro", "Alberto", "Jaime");
 	printf("Mi función escribió %d y printf escribió %d \n", mine, native);
 	printf("====================TEST 6====================\n");
 	printf("Test con varios strings con width\n");
@@ -82,13 +82,28 @@ int	main(void)
 	printf("Mi función escribió %d y printf escribió %d \n", mine, native);
 	printf("====================TEST 13====================\n");
 	printf("Test básico de números enteros con width\n");
-	mine = ft_printf("Width de 10: |%10d|\n", 10);
-	native = printf("Width de 10: |%10d|\n", 10);
+	mine = ft_printf("Width de 10: |%10d|\n", 42);
+	native = printf("Width de 10: |%10d|\n", 42);
 	printf("Mi función escribió %d y printf escribió %d \n", mine, native);
 	printf("====================TEST 14====================\n");
 	printf("Test básico de números enteros con width y justificado a la izq.\n");
-	mine = ft_printf("Width de 10: |%-10d|\n", 10);
-	native = printf("Width de 10: |%-10d|\n", 10);
+	mine = ft_printf("Width de 10: |%-10d|\n", 42);
+	native = printf("Width de 10: |%-10d|\n", 42);
+	printf("Mi función escribió %d y printf escribió %d \n", mine, native);
+	printf("====================TEST 15====================\n");
+	printf("Test básico de números enteros con width con estrella.\n");
+	mine = ft_printf("Width de 10: |%*d|\n", 10, 42);
+	native = printf("Width de 10: |%*d|\n", 10, 42);
+	printf("Mi función escribió %d y printf escribió %d \n", mine, native);
+	printf("====================TEST 16====================\n");
+	printf("Test básico de números enteros con width y justificado a la izq con estrella.\n");
+	mine = ft_printf("Width de 10: |%-*d|\n", 10, 42);
+	native = printf("Width de 10: |%-*d|\n", 10, 42);
+	printf("Mi función escribió %d y printf escribió %d \n", mine, native);
+	printf("====================TEST 17====================\n");
+	printf("Test básico con porcentaje.\n");
+	mine = ft_printf("La cpu funciona al %d%%\n", 5);
+	native = printf("La cpu funciona al %d%%\n", 5);
 	printf("Mi función escribió %d y printf escribió %d \n", mine, native);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 14:17:05 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/01/27 15:06:25 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/02/05 12:54:14 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,20 @@ void	ft_reset_data(t_flags *data)
 	data->width = 0;
 }
 
-void	ft_getwidth(const char *f, int *i, t_flags *data)
+void	ft_getwidth(const char *f, int *i, t_flags *data, va_list ap)
 {
-	data->width = ft_atoi(f + *i);
-	while (ft_isdigit(f[*i]))
-		*i += 1;
-	*i -= 1;
+	if(f[*i] == '*')
+	{
+		data->width = va_arg(ap, int);
+		i += 1;
+	}
+	else
+	{
+			data->width = ft_atoi(f + *i);
+		while (ft_isdigit(f[*i]))
+			*i += 1;
+		*i -= 1;
+	}
 }
 
 void	ft_width(int width, int str_lenght, t_flags *data)
@@ -42,6 +50,25 @@ void	ft_width(int width, int str_lenght, t_flags *data)
 			i++;
 		}
 	}
+}
+
+int 	ft_control_star(const char *f, int *i, va_list ap)
+{
+	int num;
+	
+	num = 0;
+	*i += 1;
+	if(ft_strchr("123456789", f[*i]))
+	{
+		num = ft_atoi(f + *i);
+		while (ft_isdigit(f[*i + 1]))
+			*i += 1;
+	}
+	else if('*' == f[*i])
+	{
+		num = va_arg(ap, int);
+	}
+	return(num);
 }
 
 int		ft_write_str(char *str, t_flags *data)
