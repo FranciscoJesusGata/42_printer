@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:10:38 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/02/05 12:55:18 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/02/05 20:42:34 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,21 @@ void		ft_conversions(va_list ap, char c, t_flags *data)
 
 void		ft_modifiers(const char *f, int *i, t_flags *data, va_list ap)
 {
-	char c;
+	char	c;
 
 	c = f[*i];
 	if (c == '-')
 		data->minus = 1;
-
 	else if (ft_strchr("123456789*", c))
-		ft_getwidth(f, i ,data, ap);
+		ft_getwidth(f, i, data, ap);
 	else if (c == '.')
 	{
 		data->precision = 1;
 		data->precision_l = ft_control_star(f, i, ap);
 	}
-	else if (c == '0')
+	else if (c == '0' && data->minus != 1)
 		data->zero = ft_control_star(f, i, ap);
 }
-
 
 void		ft_parse_str(t_flags *data, const char *format, va_list ap, int *i)
 {
@@ -60,7 +58,7 @@ void		ft_parse_str(t_flags *data, const char *format, va_list ap, int *i)
 
 int			ft_manageformat(t_flags *data, const char *format, va_list ap)
 {
-	int i;
+	int		i;
 
 	i = 0;
 	while (format[i])
@@ -95,6 +93,7 @@ int			ft_printf(const char *format, ...)
 	va_start(ap, format);
 	data = malloc(sizeof(t_flags));
 	data->printed = 0;
+	ft_reset_data(data);
 	ft_manageformat(data, format, ap);
 	printed = data->printed;
 	free(data);

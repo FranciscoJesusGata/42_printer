@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 13:35:47 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/02/05 12:55:33 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/02/05 20:39:24 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	main(void)
 	printf("Mi función escribió %d y printf escribió %d \n", mine, native);
 	printf("====================TEST 2====================\n");
 	printf("Test con carácteres simples\n");
-	mine = ft_printf("Hola %c. \n", 'a');
-	native = printf("Hola %c. \n", 'a');
+	mine = ft_printf("Hola %c.\n", 'a');
+	native = printf("Hola %c.\n", 'a');
 	printf("Mi función escribió %d y printf escribió %d \n", mine, native);
 	printf("====================TEST 3====================\n");
 	printf("Test con un string simple\n");
@@ -104,6 +104,21 @@ int	main(void)
 	printf("Test básico con porcentaje.\n");
 	mine = ft_printf("La cpu funciona al %d%%\n", 5);
 	native = printf("La cpu funciona al %d%%\n", 5);
+	printf("Mi función escribió %d y printf escribió %d \n", mine, native);
+	printf("====================TEST 18====================\n");
+	printf("Holbi\n");
+	mine = ft_printf("%.3s%.2s\n", "holla", "bitch");
+	native = printf("%.3s%.2s\n", "holla", "bitch");
+	printf("Mi función escribió %d y printf escribió %d \n", mine, native);
+	printf("====================TEST 19====================\n");
+	printf("bomba\n");
+	mine = ft_printf("%7.5s\n", "bombastic");
+	native = printf("%7.5s\n", "bombastic");
+	printf("Mi función escribió %d y printf escribió %d \n", mine, native);
+	printf("====================TEST 20====================\n");
+	printf("tubul\n");
+	mine = ft_printf("|%-7.5s|\n", "tubular");
+	native = printf("|%-7.5s|\n", "tubular");
 	printf("Mi función escribió %d y printf escribió %d \n", mine, native);
 	return (0);
 }

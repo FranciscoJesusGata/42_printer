@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 13:12:55 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/02/05 12:57:00 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/02/05 20:33:25 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ void	ft_strings(va_list ap, t_flags *data)
 	const char *str;
 
 	str = (const char *)va_arg(ap, const char *);
-	data->printed += ft_write_str((char *)str, data);
+	if (str && ft_strlen(str) > 0)
+		data->printed += ft_write_str((char *)str, data);
+	else if (str == NULL)
+		data->printed += ft_write_str("(null)", data);
 }
 
 void	ft_chrs(va_list ap, t_flags *data)
@@ -25,16 +28,20 @@ void	ft_chrs(va_list ap, t_flags *data)
 	char c;
 
 	c = va_arg(ap, int);
-	ft_putnbr_fd(data->width, 1);
-	if (data->width >= 0 && data->minus != 1)
-	{
+	if (data->width > 0 && data->minus != 1)
 		ft_width(data->width, 1, data);
 	data->printed += write(1, &c, 1);
-	if(data->width > 0 && data->minus == 1)
+	if (data->width > 0 && data->minus == 1)
 		ft_width(data->width, 1, data);
 }
 
 void	ft_percent(t_flags *data)
 {
-	data->printed += write(1, "%" ,1);
+	if (data->width > 0 && data->minus != 1)
+		ft_width(data->width, 1, data);
+	if (data->zero > 0)
+		ft_zero(1, data);
+	data->printed += write(1, "%", 1);
+	if (data->width > 0 && data->minus == 1)
+		ft_width(data->width, 1, data);
 }

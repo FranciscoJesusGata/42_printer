@@ -6,15 +6,15 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 11:58:10 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/01/26 12:36:40 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/02/05 13:46:39 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putnbr_modified(int n, t_flags *data)
+void		ft_putnbr_modified(int n, t_flags *data)
 {
-	char		c;
+	char	c;
 
 	if (n <= 2147483647 && n > -2147483648)
 	{
@@ -38,16 +38,14 @@ void	ft_putnbr_modified(int n, t_flags *data)
 	}
 }
 
-void		ft_zero(int num, t_flags *data)
+void		ft_zero(int l, t_flags *data)
 {
-	int		length;
 	int		i;
-	
-	length = ft_strlen(ft_itoa(num));
-	if(data->zero > length)
+
+	if (data->zero > l)
 	{
 		i = 0;
-		while (i < (data->zero - length))
+		while (i < (data->zero - l))
 		{
 			data->printed += write(1, "0", 1);
 			i++;
@@ -57,14 +55,14 @@ void		ft_zero(int num, t_flags *data)
 
 void		ft_prnt_int(va_list ap, t_flags *data)
 {
-	int prnt;
+	int		prnt;
 
 	prnt = va_arg(ap, int);
-	if(data->zero > 0)
-		ft_zero(prnt, data);
-	if(data->width > 0 && data->minus != 1)
+	if (data->zero > 0 && data->minus != 1)
+		ft_zero(ft_strlen(ft_itoa(prnt)), data);
+	if (data->width > 0 && data->minus != 1)
 		ft_width(data->width, ft_strlen(ft_itoa(prnt)), data);
 	ft_putnbr_modified(prnt, data);
-	if(data->width > 0 && data->minus == 1)
+	if (data->width > 0 && data->minus == 1)
 		ft_width(data->width, ft_strlen(ft_itoa(prnt)), data);
 }
