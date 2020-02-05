@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:10:38 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/01/26 12:30:37 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/01/27 15:36:31 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ void		ft_modifiers(const char *f, int *i, t_flags *data)
 	c = f[*i];
 	if (c == '-')
 		data->minus = 1;
-	else if (ft_strchr("123456789", c))
-		ft_getwidth(f, i ,data);
+	else if (ft_strchr("123456789", c) &&
+	!(ft_strchr(".0", c)))
+		ft_getwidth(f, i, data);
 	else if (c == '.')
 	{
 		data->precision = 1;

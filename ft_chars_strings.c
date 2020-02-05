@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 13:12:55 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/01/25 18:58:27 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/01/27 15:31:13 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,17 @@ void	ft_chrs(va_list ap, t_flags *data)
 	char c;
 
 	c = va_arg(ap, int);
-	if(data->width > 0 && data->minus != 1)
+	ft_putnbr_fd(data->width, 1);
+	if (data->width >= 0 && data->minus != 1)
+	{
 		ft_width(data->width, 1, data);
-	data->printed += write(1, &c, 1);
-	if(data->width > 0 && data->minus == 1)
-			ft_width(data->width, 1, data);
+		data->printed += write(1, &c, 1);
+	}
+	else if (data->width > 0 && data->minus == 1)
+	{
+		data->printed += write(1, &c, 1);
+		ft_width(data->width, 1, data);
+	}
+	else
+		data->printed += write(1, &c, 1);
 }
