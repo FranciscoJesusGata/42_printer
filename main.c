@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 13:35:47 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/02/06 13:19:32 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/02/06 17:49:51 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,14 @@ int	main(void)
 	hidden_s = "hi low\0don't print me lol\0";
 	mine = ft_printf("|%3.s|\n", hidden_s);
 	native = printf("|%3.s|\n", hidden_s);
+	printf("Mi función escribió %d y printf escribió %d \n", mine, native);
+	printf("====================TEST 23====================\n");
+	printf("Null with width\n");
+	mine = ft_printf("|%9.s", "\0");
+	printf("|\n");
+	printf("|");
+	native = printf("%9.s", "\0");
+	printf("|\n");
 	printf("Mi función escribió %d y printf escribió %d \n", mine, native);
 	return (0);
 }

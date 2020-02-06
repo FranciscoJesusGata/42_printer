@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 14:17:05 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/02/06 13:45:30 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/02/06 17:54:26 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ int					ft_write_str(char *str, t_flags *data)
 		len = data->precision_l;
 	if (data->width > 0 && data->minus != 1)
 		ft_width(data->width, len, data);
+	if (data->zero > 0)
+		ft_zero(len, data);
 	while (i < len && len != 0)
 	{
 		write(1, &str[i], 1);

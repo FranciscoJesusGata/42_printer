@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 13:12:55 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/02/05 20:33:25 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/02/06 17:53:16 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	ft_strings(va_list ap, t_flags *data)
 		data->printed += ft_write_str((char *)str, data);
 	else if (str == NULL)
 		data->printed += ft_write_str("(null)", data);
+	else
+		data->printed += ft_write_str("", data);
 }
 
 void	ft_chrs(va_list ap, t_flags *data)
