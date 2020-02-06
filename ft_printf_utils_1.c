@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 14:17:05 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/02/05 20:27:39 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/02/06 13:45:30 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,16 @@ void				ft_getwidth(const char *f, int *i, t_flags *d, va_list ap)
 void				ft_width(int width, int str_length, t_flags *data)
 {
 	int				i;
+	int				spaces;
 
-	if (data->precision == 1 && data->precision_l < str_length)
-		str_length -= data->precision_l - 1;
 	if (str_length < width)
 	{
 		i = 0;
-		while (i < (width - str_length))
+		if (str_length == 0)
+			spaces = width;
+		else
+			spaces = (width - str_length);
+		while (i < spaces)
 		{
 			data->printed += write(1, " ", 1);
 			i++;
@@ -60,7 +63,7 @@ int					ft_control_star(const char *f, int *i, va_list ap)
 
 	num = 0;
 	*i += 1;
-	if (ft_strchr("123456789", f[*i]))
+	if (ft_strchr("1234567890", f[*i]))
 	{
 		num = ft_atoi(f + *i);
 		while (ft_isdigit(f[*i + 1]))
@@ -69,9 +72,12 @@ int					ft_control_star(const char *f, int *i, va_list ap)
 	else if ('*' == f[*i])
 	{
 		num = va_arg(ap, int);
+		*i += 1;
 	}
 	else
-		*i += 1;
+	{
+		*i -= 1;
+	}
 	return (num);
 }
 
@@ -82,16 +88,16 @@ int					ft_write_str(char *str, t_flags *data)
 
 	len = ft_strlen(str);
 	i = 0;
-	if (data->width > 0 && data->minus != 1)
-		ft_width(data->width, len, data);
 	if ((data->precision == 1) && data->precision_l < (int)len)
 		len = data->precision_l;
-	while (i < len)
+	if (data->width > 0 && data->minus != 1)
+		ft_width(data->width, len, data);
+	while (i < len && len != 0)
 	{
 		write(1, &str[i], 1);
 		i++;
 	}
 	if (data->width > 0 && data->minus == 1)
-		ft_width(data->width, ft_strlen(str), data);
+		ft_width(data->width, len, data);
 	return (i);
 }
