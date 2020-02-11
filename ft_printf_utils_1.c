@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 14:17:05 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/02/06 17:54:26 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/02/11 11:44:16 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void				ft_reset_data(t_flags *data)
 	data->precision = 0;
 	data->precision_l = 0;
 	data->width = 0;
+	data->negative = 0;
 }
 
 void				ft_getwidth(const char *f, int *i, t_flags *d, va_list ap)
@@ -90,10 +91,14 @@ int					ft_write_str(char *str, t_flags *data)
 	i = 0;
 	if ((data->precision == 1) && data->precision_l < (int)len)
 		len = data->precision_l;
+	if (data->zero > data->width)
+		data->width = data->zero;
 	if (data->width > 0 && data->minus != 1)
 		ft_width(data->width, len, data);
-	if (data->zero > 0)
-		ft_zero(len, data);
+	/*
+	**if (data->zero > 0)
+	**	ft_zero(len, data);
+	*/
 	while (i < len && len != 0)
 	{
 		write(1, &str[i], 1);

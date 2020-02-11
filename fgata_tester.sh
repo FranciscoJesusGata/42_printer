@@ -1,3 +1,3 @@
 #!/bin/bash
-make test
+make own_test
 ./a.out

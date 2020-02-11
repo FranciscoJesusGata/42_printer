@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:10:34 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/02/05 19:48:21 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/02/11 11:39:43 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct	s_printf
 	int		precision;
 	int		precision_l;
 	int		width;
+	int		negative;
 }				t_flags;
 
 int				ft_printf(const char *format, ...);
@@ -40,6 +41,6 @@ void			ft_prnt_int(va_list ap, t_flags *data);
 void			ft_putnbr_modified(int n, t_flags *data);
 int 			ft_control_star(const char *f, int *i, va_list ap);
 void			ft_percent(t_flags *data);
-void			ft_zero(int l, t_flags *data);
+int				ft_zero(int l, int zeros);
 
 #endif

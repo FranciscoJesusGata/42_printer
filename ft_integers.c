@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 11:58:10 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/02/05 13:46:39 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/02/08 16:34:33 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,10 @@ void		ft_putnbr_modified(int n, t_flags *data)
 
 	if (n <= 2147483647 && n > -2147483648)
 	{
-		if (n < 0)
+		if (data->negative == 1 && data->zero == 0 && data->precision_l == 0)
 		{
 			data->printed += write(1, "-", 1);
-			if (n == -2147483648)
-			{
-				data->printed = write(1, "2", 1);
-				n *= -1;
-				n = n % 1000000000;
-			}
-			n *= -1;
+			data->negative = 0;
 		}
 		if (n > 9)
 		{
@@ -38,31 +32,45 @@ void		ft_putnbr_modified(int n, t_flags *data)
 	}
 }
 
-void		ft_zero(int l, t_flags *data)
+int		ft_zero(int l, int zeros)
 {
 	int		i;
+	int		prnt;
 
-	if (data->zero > l)
+	i = 0;
+	prnt = 0;
+	while (i < (zeros - l))
 	{
-		i = 0;
-		while (i < (data->zero - l))
-		{
-			data->printed += write(1, "0", 1);
-			i++;
-		}
+		prnt += write(1, "0", 1);
+		i++;
 	}
+	return(prnt);
 }
 
 void		ft_prnt_int(va_list ap, t_flags *data)
 {
 	int		prnt;
+	int		dgts;
 
 	prnt = va_arg(ap, int);
+	dgts = ft_strlen(ft_itoa(prnt));
+	if(prnt < 0)
+	{
+		data->negative = 1;
+		if(data->zero > 0 || data->precision_l > 0)
+		{
+			data->printed += write(1, "-", 1);
+			dgts -= 1;
+		}
+		prnt *= -1;
+	}
 	if (data->zero > 0 && data->minus != 1)
-		ft_zero(ft_strlen(ft_itoa(prnt)), data);
+		data->printed += ft_zero(dgts, data->zero);
+	if(data->precision == 1 && data->precision_l > dgts)
+		data->printed += ft_zero(dgts, data->precision_l);
 	if (data->width > 0 && data->minus != 1)
-		ft_width(data->width, ft_strlen(ft_itoa(prnt)), data);
+		ft_width(data->width, dgts, data);
 	ft_putnbr_modified(prnt, data);
 	if (data->width > 0 && data->minus == 1)
-		ft_width(data->width, ft_strlen(ft_itoa(prnt)), data);
+		ft_width(data->width, dgts, data);
 }

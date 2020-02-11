@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 13:35:47 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/02/06 17:49:51 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/02/08 16:11:24 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,21 @@ int	main(void)
 	printf("|");
 	native = printf("%9.s", "\0");
 	printf("|\n");
+	printf("Mi función escribió %d y printf escribió %d \n", mine, native);
+	printf("====================TEST 24====================\n");
+	printf("Integer con precisión\n");
+	mine = ft_printf("%.5d\n", 2);
+	native = printf("%.5d\n", 2);
+	printf("Mi función escribió %d y printf escribió %d \n", mine, native);
+	printf("====================TEST 25====================\n");
+	printf("Integer negativo con precisión\n");
+	mine = ft_printf("%.5d\n", -3);
+	native = printf("%.5d\n", -3);
+	printf("Mi función escribió %d y printf escribió %d \n", mine, native);
+	printf("====================TEST 26====================\n");
+	printf("Integer negativo con width\n");
+	mine = ft_printf("|%5d|\n", -42);
+	native = printf("|%5d|\n", -42);
 	printf("Mi función escribió %d y printf escribió %d \n", mine, native);
 	return (0);
 }

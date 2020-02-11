@@ -6,7 +6,7 @@
 #    By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/22 13:40:25 by fgata-va          #+#    #+#              #
-#    Updated: 2020/02/05 13:38:11 by fgata-va         ###   ########.fr        #
+#    Updated: 2020/02/11 11:44:42 by fgata-va         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ clean:
 		@$(MAKE) -C Libft clean
 
 # Regla para compilar con programa con un main
-test:
+own_test:
 	$(CC) $(CFLAGS) -g -I./ $(SRC) main.c Libft/*.c
 
 fclean: clean
