@@ -1,3 +1,2 @@
 #!/bin/bash
-make own_test
-./a.out
+make own_test && ./a.out

@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 14:17:05 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/02/11 11:44:16 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/02/11 18:13:17 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,7 @@ int					ft_control_star(const char *f, int *i, va_list ap)
 		*i += 1;
 	}
 	else
-	{
 		*i -= 1;
-	}
 	return (num);
 }
 
@@ -91,19 +89,17 @@ int					ft_write_str(char *str, t_flags *data)
 	i = 0;
 	if ((data->precision == 1) && data->precision_l < (int)len)
 		len = data->precision_l;
-	if (data->zero > data->width)
-		data->width = data->zero;
 	if (data->width > 0 && data->minus != 1)
 		ft_width(data->width, len, data);
-	/*
-	**if (data->zero > 0)
-	**	ft_zero(len, data);
-	*/
+	if (data->zero > 0 && data->minus != 1)
+		data->printed += ft_zero(len, data->zero);
 	while (i < len && len != 0)
 	{
 		write(1, &str[i], 1);
 		i++;
 	}
+	if (data->zero > 0 && data->minus == 1)
+		ft_width(data->zero, len, data);
 	if (data->width > 0 && data->minus == 1)
 		ft_width(data->width, len, data);
 	return (i);
