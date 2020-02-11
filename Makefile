@@ -6,7 +6,7 @@
 #    By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/22 13:40:25 by fgata-va          #+#    #+#              #
-#    Updated: 2020/02/11 11:44:42 by fgata-va         ###   ########.fr        #
+#    Updated: 2020/02/11 20:48:29 by fgata-va         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS += -Wall -Werror -Wextra
 
 LIBOBJS = Libft/*.o
 
-SRC = ft_printf.c ft_chars_strings.c ft_integers.c ft_printf_utils_1.c
+SRC = ft_printf.c ft_chars_strings.c ft_integers.c ft_printf_utils_1.c ft_hexadecimal.c
 
 OBJ = $(SRC:.c=.o)
 
