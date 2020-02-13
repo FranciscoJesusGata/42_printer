@@ -45,5 +45,6 @@ int				ft_zero(int l, int zeros);
 void			ft_print_hex(va_list ap, t_flags *data, int mayus);
 int				ft_totaldgts(t_flags *data, int dgts);
 void			ft_prnt_unsig(va_list ap, t_flags *data);
+void            ft_print_pointer(va_list ap, t_flags *data);
 
 #endif

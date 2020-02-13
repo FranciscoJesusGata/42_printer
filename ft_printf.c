@@ -13,6 +13,24 @@
 #include "ft_printf.h"
 #include <stdlib.h>
 
+int		ft_check_segfault(const char *f)
+{
+	int	i;
+	int	ok;
+
+	ok = 0;
+	i = 0;
+	while(f[i])
+	{
+		if (ft_strchr(CONVERSIONS, f[i]))
+		{
+			ok = 1;
+		}
+		i++;
+	}
+	return(ok);
+}
+
 void		ft_conversions(va_list ap, char c, t_flags *data)
 {
 	if (c == 'c')
@@ -29,6 +47,8 @@ void		ft_conversions(va_list ap, char c, t_flags *data)
 		ft_print_hex(ap, data, 1);
 	else if (c == 'u')
 		ft_prnt_unsig(ap, data);
+    else if (c == 'p')
+        ft_print_pointer(ap, data);
 }
 
 void		ft_modifiers(const char *f, int *i, t_flags *data, va_list ap)
@@ -57,9 +77,7 @@ void		ft_parse_str(t_flags *data, const char *format, va_list ap, int *i)
 		ft_reset_data(data);
 	}
 	else
-	{
 		ft_modifiers(format, i, data, ap);
-	}
 }
 
 int			ft_manageformat(t_flags *data, const char *format, va_list ap)
@@ -71,7 +89,7 @@ int			ft_manageformat(t_flags *data, const char *format, va_list ap)
 	{
 		if (format[i] != '%')
 			data->printed += write(1, &format[i], 1);
-		else if (format[i] == '%')
+		else if (format[i] == '%' && ft_check_segfault((format + i + 1)) == 1)
 		{
 			while (ft_strchr(ALLSIMBOLS, format[i]))
 			{
@@ -81,7 +99,7 @@ int			ft_manageformat(t_flags *data, const char *format, va_list ap)
 				{
 					i++;
 					break ;
-				}
+				}			
 			}
 			continue;
 		}
