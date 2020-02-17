@@ -6,15 +6,15 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 20:27:06 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/02/12 21:04:52 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/02/12 21:06:39 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		ft_putnbr_unsigned(unsigned int n, t_flags *data)
+void				ft_putnbr_unsigned(unsigned int n, t_flags *data)
 {
-	char	c;
+	char			c;
 
 	if (n <= 4294967295 &&
 	(data->precision != 1 || (data->precision == 1 && data->precision_l != 0)))
