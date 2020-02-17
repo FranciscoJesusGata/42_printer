@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 13:35:47 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/02/12 18:15:44 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/02/17 14:16:58 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,9 +181,32 @@ int	main(void)
 	printf("\n");
 	printf("Mi función escribió %d\n", mine);
 	printf("====================TEST 32=====================\n");
-	printf("Timeout?\n");
-	mine = ft_printf("Width de 10: |%8.3d|\n", -8473);
-	native = printf("Width de 10: |%8.3d|\n", -8473);
+	printf("Test de pointer NULL\n");
+	mine = ft_printf("%p\n", NULL);
+	native = printf("%p\n", NULL);
+	printf("Mi función escribió %d y printf escribió %d \n", mine, native);
+	printf("====================TEST 32=====================\n");
+	printf("Test de pointer NULL\n");
+	mine = ft_printf("%.p\n", NULL);
+	native = printf("%.p\n", NULL);
+	printf("Mi función escribió %d y printf escribió %d \n", mine, native);
+	printf("====================TEST 34=====================\n");
+	printf("Test de pointer NULL con width\n");
+	mine = ft_printf("Width de 5: |%5p|\n", NULL);
+	native = printf("Width de 5: |%5p|\n", NULL);
+	printf("Mi función escribió %d y printf escribió %d \n", mine, native);
+	printf("====================TEST 35=====================\n");
+	printf("Test de string con precisión usando asterisco\n");
+	mine = ft_printf("|%.*s|\n", 3, "hello");
+	native = printf("|%.*s|\n", 3, "hello");
+	printf("Mi función escribió %d y printf escribió %d \n", mine, native);
+	printf("====================TEST 36=====================\n");
+	printf("Test de string con cero usando asterisco y argumento negativo\n");
+	mine = ft_printf("|%0*i|\n", -7, -54);
+	native = printf("|%0*i|\n", -7, -54);
+	printf("Mi función escribió %d y printf escribió %d \n", mine, native);
+	mine = ft_printf("|%-7i|\n", -54);
+	native = printf("|%-7i|\n", -54);
 	printf("Mi función escribió %d y printf escribió %d \n", mine, native);
 	return (0);
 }

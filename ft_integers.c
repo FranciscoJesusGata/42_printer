@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 11:58:10 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/02/12 21:02:23 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/02/17 14:39:12 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@ int			ft_totaldgts(t_flags *data, int dgts)
 	diff = 0;
 	if (data->precision == 1 && data->precision_l > dgts)
 		diff = data->precision_l - dgts;
-	else if (data->zero > dgts && data->precision == 0)
+	else if (data->zero > dgts && data->precision == 0 && data->minus != 1)
 		diff = data->zero - dgts;
-	if (data->negative == 1 && (diff > 0 || data->minus == 1))
+	if (data->negative == 1 &&
+	(diff > 0 || (data->minus == 1 && data->zero == 0)))
 		diff += 1;
 	return (dgts + diff);
 }
@@ -82,20 +83,25 @@ void		ft_int_flags(t_flags *data, int *dgts)
 
 void		ft_prnt_int(va_list ap, t_flags *data)
 {
-	int		prnt;
-	int		dgts;
+	long long int	prnt;
+	int				dgts;
 
 	prnt = va_arg(ap, int);
 	dgts = ft_strlen(ft_itoa(prnt));
-	if (prnt < 0)
+	if (prnt < 0 && prnt > -2147483648)
 	{
 		data->negative = 1;
 		prnt *= -1;
 	}
 	ft_int_flags(data, &dgts);
-	ft_putnbr_modified(prnt, data);
+	if (prnt <= -2147483648)
+		data->printed += write(1, "-2147483648", 11);
+	else
+		ft_putnbr_modified(prnt, data);
 	if (data->precision == 1 && data->precision_l == 0 && data->width > 0)
 		data->printed += write(1, " ", 1);
+	if (data->zero > 0 && data->minus == 1)
+		data->width = data->zero;
 	if (data->width > 0 && data->minus == 1)
 		ft_width(data->width, ft_totaldgts(data, dgts), data);
 }

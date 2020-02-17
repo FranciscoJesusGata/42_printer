@@ -6,30 +6,12 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:10:38 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/02/12 20:55:15 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/02/17 14:05:11 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdlib.h>
-
-int		ft_check_segfault(const char *f)
-{
-	int	i;
-	int	ok;
-
-	ok = 0;
-	i = 0;
-	while(f[i])
-	{
-		if (ft_strchr(CONVERSIONS, f[i]))
-		{
-			ok = 1;
-		}
-		i++;
-	}
-	return(ok);
-}
 
 void		ft_conversions(va_list ap, char c, t_flags *data)
 {
@@ -47,8 +29,8 @@ void		ft_conversions(va_list ap, char c, t_flags *data)
 		ft_print_hex(ap, data, 1);
 	else if (c == 'u')
 		ft_prnt_unsig(ap, data);
-    else if (c == 'p')
-        ft_print_pointer(ap, data);
+	else if (c == 'p')
+		ft_print_pointer(ap, data);
 }
 
 void		ft_modifiers(const char *f, int *i, t_flags *data, va_list ap)
@@ -61,11 +43,11 @@ void		ft_modifiers(const char *f, int *i, t_flags *data, va_list ap)
 	else if (ft_strchr("123456789*", c))
 		ft_getwidth(f, i, data, ap);
 	else if (c == '0')
-		data->zero = ft_control_star(f, i, ap);
+		data->zero = ft_control_star(f, i, ap, data);
 	else if (c == '.')
 	{
-		data->precision_l = ft_control_star(f, i, ap);
 		data->precision = 1;
+		data->precision_l = ft_control_star(f, i, ap, data);
 	}
 }
 
@@ -99,7 +81,7 @@ int			ft_manageformat(t_flags *data, const char *format, va_list ap)
 				{
 					i++;
 					break ;
-				}			
+				}
 			}
 			continue;
 		}

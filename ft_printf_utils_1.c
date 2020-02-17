@@ -6,13 +6,13 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 14:17:05 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/02/11 18:13:17 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/02/17 14:12:41 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void				ft_reset_data(t_flags *data)
+void	ft_reset_data(t_flags *data)
 {
 	data->minus = 0;
 	data->zero = 0;
@@ -22,11 +22,16 @@ void				ft_reset_data(t_flags *data)
 	data->negative = 0;
 }
 
-void				ft_getwidth(const char *f, int *i, t_flags *d, va_list ap)
+void	ft_getwidth(const char *f, int *i, t_flags *d, va_list ap)
 {
 	if (f[*i] == '*')
 	{
 		d->width = va_arg(ap, int);
+		if (d->width < 0)
+		{
+			d->width *= -1;
+			d->minus = 1;
+		}
 		i += 1;
 	}
 	else
@@ -38,10 +43,10 @@ void				ft_getwidth(const char *f, int *i, t_flags *d, va_list ap)
 	}
 }
 
-void				ft_width(int width, int str_length, t_flags *data)
+void	ft_width(int width, int str_length, t_flags *data)
 {
-	int				i;
-	int				spaces;
+	int	i;
+	int	spaces;
 
 	if (str_length < width)
 	{
@@ -58,9 +63,9 @@ void				ft_width(int width, int str_length, t_flags *data)
 	}
 }
 
-int					ft_control_star(const char *f, int *i, va_list ap)
+int		ft_control_star(const char *f, int *i, va_list ap, t_flags *data)
 {
-	int				num;
+	int	num;
 
 	num = 0;
 	*i += 1;
@@ -73,34 +78,10 @@ int					ft_control_star(const char *f, int *i, va_list ap)
 	else if ('*' == f[*i])
 	{
 		num = va_arg(ap, int);
-		*i += 1;
+		if (num < 0)
+			num = ft_neg_star(num, data);
 	}
 	else
 		*i -= 1;
 	return (num);
-}
-
-int					ft_write_str(char *str, t_flags *data)
-{
-	unsigned int	i;
-	unsigned int	len;
-
-	len = ft_strlen(str);
-	i = 0;
-	if ((data->precision == 1) && data->precision_l < (int)len)
-		len = data->precision_l;
-	if (data->width > 0 && data->minus != 1)
-		ft_width(data->width, len, data);
-	if (data->zero > 0 && data->minus != 1)
-		data->printed += ft_zero(len, data->zero);
-	while (i < len && len != 0)
-	{
-		write(1, &str[i], 1);
-		i++;
-	}
-	if (data->zero > 0 && data->minus == 1)
-		ft_width(data->zero, len, data);
-	if (data->width > 0 && data->minus == 1)
-		ft_width(data->width, len, data);
-	return (i);
 }
