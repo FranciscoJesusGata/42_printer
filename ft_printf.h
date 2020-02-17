@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:10:34 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/02/17 14:12:47 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/02/17 14:47:52 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,14 @@ void			ft_getwidth(const char *f, int *i, t_flags *d, va_list ap);
 void			ft_width(int width, int str_lenght, t_flags *data);
 void			ft_prnt_int(va_list ap, t_flags *data);
 void			ft_putnbr_modified(int n, t_flags *data);
-int				ft_control_star(const char *f, int *i, va_list ap, t_flags *data);
+int				ft_control_star(const char *f, int *i, va_list ap, t_flags *d);
 int				ft_neg_star(int num, t_flags *data);
 void			ft_percent(t_flags *data);
 int				ft_zero(int l, int zeros);
 void			ft_print_hex(va_list ap, t_flags *data, int mayus);
 int				ft_totaldgts(t_flags *data, int dgts);
 void			ft_prnt_unsig(va_list ap, t_flags *data);
-void            ft_print_pointer(va_list ap, t_flags *data);
+void			ft_print_pointer(va_list ap, t_flags *data);
 int				ft_check_segfault(const char *f);
 
 #endif

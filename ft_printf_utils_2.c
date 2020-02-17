@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 11:59:25 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/02/17 14:21:08 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/02/17 14:48:12 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int					ft_check_segfault(const char *f)
 	return (ok);
 }
 
-int				ft_neg_star(int num, t_flags *data)
+int					ft_neg_star(int num, t_flags *data)
 {
 	if (data->precision == 1)
 	{
