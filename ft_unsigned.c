@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 20:27:06 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/11/20 12:47:56 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/02/12 21:06:39 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,9 @@ void				ft_prnt_unsig(va_list ap, t_flags *data)
 {
 	unsigned int	prnt;
 	int				dgts;
-	char			*tmp;
 
 	prnt = va_arg(ap, unsigned int);
-	tmp = ft_itoa(prnt);
-	dgts = ft_strlen(tmp);
-	free(tmp);
+	dgts = ft_strlen(ft_itoa(prnt));
 	if (data->width > 0 && data->minus != 1)
 		ft_width(data->width, ft_totaldgts(data, dgts), data);
 	if (data->zero > 0 && data->precision == 1)
