@@ -44,9 +44,7 @@ static size_t		ft_getlen(char const *s1, char const *set, unsigned int s)
 	unsigned int	j;
 	unsigned int	encountered;
 
-	i = ft_strlen(s1);
-	if (i > 1)
-		i--;
+	i = ft_strlen(s1) - 1;
 	j = 0;
 	encountered = 0;
 	while (i > s)
