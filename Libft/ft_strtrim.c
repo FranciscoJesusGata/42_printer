@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 16:52:37 by fgata-va          #+#    #+#             */
-/*   Updated: 2019/11/19 13:13:50 by fgata-va         ###   ########.fr       */
+/*   Updated: 2020/11/26 16:53:17 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ static size_t		ft_getlen(char const *s1, char const *set, unsigned int s)
 	unsigned int	j;
 	unsigned int	encountered;
 
-	i = ft_strlen(s1) - 1;
+	i = ft_strlen(s1);
+	if (i > 1)
+		i--;
 	j = 0;
 	encountered = 0;
 	while (i > s)
