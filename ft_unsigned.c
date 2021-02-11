@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 20:27:06 by fgata-va          #+#    #+#             */
-/*   Updated: 2020/11/24 21:49:11 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/02/11 10:01:07 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void				ft_putnbr_unsigned(unsigned int n, t_flags *data)
 {
 	char			c;
 
-	if (data->precision != 1 || (data->precision == 1 && data->precision_l != 0))
+	if (data->precision != 1 ||
+		(data->precision == 1 && data->precision_l != 0))
 	{
 		if (data->negative == 1 && data->zero == 0 && data->precision_l == 0)
 		{
