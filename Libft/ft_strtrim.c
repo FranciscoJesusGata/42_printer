@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 16:52:37 by fgata-va          #+#    #+#             */
-/*   Updated: 2021/02/16 14:31:54 by fgata-va         ###   ########.fr       */
+/*   Updated: 2021/02/16 14:35:44 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,3 @@ char				*ft_strtrim(char const *s1, char const *set)
 		return (NULL);
 	return (str);
 }
-
