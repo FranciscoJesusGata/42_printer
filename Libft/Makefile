@@ -6,7 +6,7 @@
 #    By: fgata-va <fgata-va@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/21 17:33:16 by fgata-va          #+#    #+#              #
-#    Updated: 2019/12/03 20:59:32 by fgata-va         ###   ########.fr        #
+#    Updated: 2021/02/16 23:22:12 by fgata-va         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ ft_putstr_fd.c  ft_strjoin.c    ft_strlen.c     ft_strnstr.c    ft_substr.c ft_b
 ft_isalpha.c ft_isprint.c ft_memchr.c ft_memmove.c ft_putendl_fd.c ft_strchr.c \
 ft_strlcat.c ft_strmapi.c ft_strrchr.c ft_tolower.c ft_calloc.c ft_isascii.c \
 ft_itoa.c ft_memcmp.c ft_memset.c ft_putnbr_fd.c ft_strdup.c ft_strlcpy.c ft_strncmp.c \
-ft_strtrim.c ft_toupper.c ft_split.c
+ft_strtrim.c ft_toupper.c ft_split.c ft_atol.c
 
 BONUSSRC = ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c ft_lstlast_bonus.c\
 ft_lstadd_back_bonus.c ft_lstdelone_bonus.c ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c
