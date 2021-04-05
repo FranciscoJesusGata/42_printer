@@ -1,2 +1,3 @@
-# ft_printf
-Still in process, being tested with pft_2019 tester.
+# 42_printer
+
+Clone of the C printf (only for ints, chars, percentages, hexadecimals, unsigned and pointers)
